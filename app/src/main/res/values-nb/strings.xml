@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fronter Feed</string>
+    <string name="action_logout">Logg Ut</string>
+    <string name="action_refresh">Last på nytt</string>
+    <string name="action_settings">Innstillinger</string>
+    <string name="action_sign_in">Logg Inn</string>
+    <string name="error_authentication_failed">Innloggingen mislyktes. Feil brukernavn eller passord.</string>
+    <string name="error_credentials_must_be_stored">Brukernavn og passordet må lagres for at appen skal fungere.</string>
+    <string name="error_feed_url_not_found">Feed-url\'en ble ikke funnet.</string>
+    <string name="error_field_required">Feltet er påkrevd.</string>
+    <string name="failed_to_load_data">Lasting av data feilet.</string>
+    <string name="feed_url_hint_description">Url\'en skal være den samme som du ser i nettleseren når du logger inn på fronter.\nFor eksempel:\nhttps://fronter.com/minskole/</string>
+    <string name="feed_url_hint_title">Fronter URL</string>
+    <string name="generic_error_title">Error</string>
+    <string name="no_network_available_desc">Mangler internett forbindelse</string>
+    <string name="no_network_available_title">Ingen Internett</string>
+    <string name="notifications_message">Ny(e) melding(er) har blitt postet på fronter.</string>
+    <string name="pref_notify">Varslinger</string>
+    <string name="pref_notify_summary">Varsle når nye medlinger blir lagt ut på fronter.</string>
+    <string name="pref_sync_wifi_summary">Bruk kun WIFI ved syncronisering i bakgrunnen.</string>
+    <string name="pref_sync_wifi">Bruk bare WIFI</string>
+    <string name="store_credentials_description">Brukernavn og passord vil bli lagret ukryptert på din mobil. Hvis du ikke liker dette venligst ikke bruk denne appen.</string>
+    <string name="store_credentials_title">Brukernavn og Passord</string>
+    <string name="sync_failed_title">Feil</string>
+    <string name="title_activity_settings">Innstillinger</string>
+    <string name="title_activity_view_message">Se melding</string>
+    <string name="prompt_baseurl">Fronter URL</string>
+    <string name="prompt_password">Passord</string>
+    <string name="prompt_username">Brukernavn</string>
+    <string name="pref_sync_interval">Synkroniseringsintervall</string>
+    <string name="error_invalid_feed_url">Ugyldig feed url.</string>
+    <string name="pref_sync_interval_default">2</string>
+    <string name="sync_interval_0">Hvert 15. minutt</string>
+    <string name="sync_interval_1">Hvert 30. minutt</string>
+    <string name="sync_interval_2">En gang i timen</string>
+    <string name="sync_interval_3">To ganger daglig</string>
+    <string name="sync_interval_4">En gang for dag</string>
+
+
+    <string name="store_credentials_confirm">Lagre brukernavn og passord</string>
+    <string name="empty_feed_list_message">Ingen meldinger</string>
+    <string name="title_activity_feed">Fronter Feed</string>
+</resources>

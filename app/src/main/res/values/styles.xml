@@ -1,0 +1,67 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="FronterFeed" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <!-- colorPrimary is used for the default action bar background -->
+        <item name="colorPrimary">#05669A</item>
+        <!-- colorPrimaryDark is used for the status bar -->
+        <item name="colorPrimaryDark">#000000</item>
+
+
+        <item name="android:background">#05669A</item>
+
+
+        <item name="android:textColor">#ffffff</item>
+
+        <!-- android:textColorPrimary is the  color of the title text
+     in the Toolbar, in the Theme.AppCompat theme:  -->
+        <item name="android:textColorPrimary">#ffffff</item>
+
+        <!-- android:actionMenuTextColor is the color of the text of
+              action (menu) items in the Toolbar, at least in the
+              Theme.AppCompat theme.
+              For some reason, they already get the textColorPrimary
+              when running on API 21, but not on older versions of
+              Android, so this is only necessary to support older
+              Android versions.-->
+        <item name="actionMenuTextColor">#ffffff</item>
+
+        <!-- android:textColorSecondary is the color of the menu
+             overflow icon (three vertical dots) -->
+        <item name="android:textColorSecondary">#ffffff</item>
+
+
+    </style>
+
+
+    <style name="FronterFeed.actionBar">
+
+
+
+
+    </style>
+
+    <style name="FronterFeed.messages">
+
+
+        <item name="android:textColor">#333333</item>
+
+    </style>
+
+    <style name="FronterFeed.settings">
+
+        <item name="android:textColorSecondary">#222222</item>
+
+
+    </style>
+
+    <style name="FronterFeed.login">
+
+        <item name="android:textColorSecondary">#222222</item>
+
+
+    </style>
+
+
+</resources>

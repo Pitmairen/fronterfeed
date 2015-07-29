@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_sync_interval_entries">
+
+        <item>@string/sync_interval_0</item>
+        <item>@string/sync_interval_1</item>
+        <item>@string/sync_interval_2</item>
+        <item>@string/sync_interval_3</item>
+        <item>@string/sync_interval_4</item>
+    </string-array>
+    <string-array name="pref_sync_interval_values">
+        <item>@string/sync_interval_0_value</item>
+        <item>@string/sync_interval_1_value</item>
+        <item>@string/sync_interval_2_value</item>
+        <item>@string/sync_interval_3_value</item>
+        <item>@string/sync_interval_4_value</item>
+    </string-array>
+
+</resources>
