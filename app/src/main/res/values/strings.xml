@@ -22,7 +22,7 @@
     <string name="error_invalid_feed_url">Invalid Fronter URL</string>
     <string name="error_feed_url_not_found">Fronter URL not found</string>
     <string name="store_credentials_title">Username and password</string>
-    <string name="store_credentials_description">The username and password will be stored in plain text on your device. If you don\'t like this please do not use this app.</string>
+    <string name="store_credentials_description">Your username and password will be stored on your device. This is needed for the app to be able to download updates from Fronter in the background. The values will be stored in encrypted form, nevertheless a skilled attacker with physical access to your device could still be able to retrieve the values. The device should therefore not be handed over to anyone you don\'t trust for long periods of time. </string>
     <string name="feed_url_hint_title">Fronter URL</string>
     <string name="feed_url_hint_description">The url should be the one you see when you log in to fronter.\nSomething like:\nhttps://fronter.com/myschool/</string>
     <string name="generic_error_title">Error</string>

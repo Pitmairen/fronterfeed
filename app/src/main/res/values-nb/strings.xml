@@ -20,7 +20,7 @@
     <string name="pref_notify_summary">Varsle når nye medlinger blir lagt ut på fronter.</string>
     <string name="pref_sync_wifi_summary">Bruk kun WIFI ved syncronisering i bakgrunnen.</string>
     <string name="pref_sync_wifi">Bruk bare WIFI</string>
-    <string name="store_credentials_description">Brukernavn og passord vil bli lagret ukryptert på din mobil. Hvis du ikke liker dette venligst ikke bruk denne appen.</string>
+    <string name="store_credentials_description">Brukernavnet og passordet vil bli lagret på din telefon. Dette er nødvendig for at appen skal kunne hente oppdateringer fra Fronter i bakgrunnen. Verdiene vil bli lagret i kryptert form. Likevel kan en dyktig person med fysisk tilgang til telefonen klare å hente ut verdien. Telefonen bør derfor ikke overlates til noen du ikke stoler på i lange perioder av gangen.</string>
     <string name="store_credentials_title">Brukernavn og Passord</string>
     <string name="sync_failed_title">Feil</string>
     <string name="title_activity_settings">Innstillinger</string>

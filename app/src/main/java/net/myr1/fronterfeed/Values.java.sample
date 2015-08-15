@@ -1,0 +1,20 @@
+package net.myr1.fronterfeed;
+
+import java.security.InvalidKeyException;
+
+
+public class Values {
+
+    // Not very secure, but it may satisfy some people.
+    private static final String KEY_STRING = "<insert secret key>"; // Should be string version of AesCbcWithIntegrity.SecretKeys
+
+    public static AesCbcWithIntegrity.SecretKeys getKeys(){
+        try {
+            return AesCbcWithIntegrity.keys(KEY_STRING);
+        } catch (InvalidKeyException e) {
+            throw new RuntimeException(e.toString());
+        }
+
+    }
+
+}

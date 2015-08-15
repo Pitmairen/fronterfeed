@@ -6,28 +6,54 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
+
 /**
  * Settings wrapper
  */
 public class Settings {
 
+    /**
+     * Runs storage upgrades
+     * @param context a context
+     */
+    public static void upgradeStorage(Context context){
+
+        Settings set = new Settings(context);
+        set.doStorageUpgrade();
+    }
+
 
     public static final String NOTIFICATIONS = "pref_notify";
-    public static final String USERNAME = "fronter_username";
-    public static final String PASSWORD = "fronter_password";
+    public static final String USERNAME = "user2";
+    public static final String PASSWORD = "pass2";
     public static final String FEED_URL = "fronter_feed_url";
     public static final String SYNC_WIFI = "pref_sync_wifi";
     public static final String SYNC_INTERVAL = "pref_sync_interval";
     public static final String WORKING_CONFIG = "fronter_working_config";
 
+    private static final String STORAGE_VERSION = "storage_version";
+    private static final int CURRENT_VERSION = 2;
 
     private Context mContext;
     private SharedPreferences mPreferences;
     private SharedPreferences.Editor mEditor;
 
+    private static String usernameCache = "";
+    private static String passwordCache = "";
+
+    private AesCbcWithIntegrity.SecretKeys mKeys;
 
     public Settings(Context context)
     {
+        this(context, Values.getKeys());
+    }
+
+
+    public Settings(Context context, AesCbcWithIntegrity.SecretKeys keys)
+    {
+        mKeys = keys;
         mContext = context.getApplicationContext();
         mPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
     }
@@ -70,14 +96,16 @@ public class Settings {
         mEditor.commit();
     }
 
-    public void setUsername(String username)
-    {
-        mEditor.putString(USERNAME, username);
+    public void setUsername(String username) {
+        usernameCache = "";
+
+        mEditor.putString(USERNAME, encryptString(username));
     }
 
-    public void setPassword(String password)
-    {
-        mEditor.putString(PASSWORD, password);
+    public void setPassword(String password){
+        passwordCache = "";
+
+        mEditor.putString(PASSWORD, encryptString(password));
     }
 
     public void setBaseFeedUrl(String url)
@@ -87,12 +115,32 @@ public class Settings {
 
     public String getUsername()
     {
-        return mPreferences.getString(USERNAME, "");
+        if (!TextUtils.isEmpty(usernameCache))
+            return usernameCache;
+
+        String username = mPreferences.getString(USERNAME, "");
+
+        if (!TextUtils.isEmpty(username)){
+            username = decryptString(username);
+        }
+
+        usernameCache = username;
+        return username;
     }
 
     public String getPassword()
     {
-        return mPreferences.getString(PASSWORD, "");
+        if (!TextUtils.isEmpty(passwordCache))
+            return passwordCache;
+
+        String password = mPreferences.getString(PASSWORD, "");
+
+        if (!TextUtils.isEmpty(password)){
+            password = decryptString(password);
+        }
+
+        passwordCache = password;
+        return password;
     }
 
     public boolean hasWorkingConfig()
@@ -145,6 +193,87 @@ public class Settings {
         }
     }
 
+    public void doStorageUpgrade() {
 
+        int version = getStorageVersion();
+
+        if(version == CURRENT_VERSION){
+            return; // Nothing to do
+        }
+
+        startEdit();
+
+
+        if (version == -1){ // No previous storage
+            // The version was not stored in the first version of the app so
+            // we check if upgrade from 1 -> 2 is needed.
+            upgradeVersion_1_2();
+        }
+
+
+        setStorageVersion();
+
+        commitEdit();
+    }
+
+
+    private int getStorageVersion(){
+        return mPreferences.getInt(STORAGE_VERSION, -1);
+    }
+    private void setStorageVersion(){
+        mEditor.putInt(STORAGE_VERSION, CURRENT_VERSION);
+    }
+
+
+
+    private void upgradeVersion_1_2(){
+
+        String username = mPreferences.getString("fronter_username", "");
+        if(!TextUtils.isEmpty(username)){
+            this.setUsername(username);
+            mEditor.remove("fronter_username");
+        }
+
+        String password = mPreferences.getString("fronter_password", "");
+
+        if(!TextUtils.isEmpty(password)){
+            this.setPassword(password);
+            mEditor.remove("fronter_password");
+        }
+    }
+
+
+
+
+    private String encryptString(String input) {
+
+        AesCbcWithIntegrity.CipherTextIvMac cipherTextIvMac =
+                null;
+
+        try {
+            cipherTextIvMac = AesCbcWithIntegrity.encrypt(input, mKeys);
+        } catch (UnsupportedEncodingException | GeneralSecurityException e) {
+            // This should never happen. If it just return the original input
+            // and so it will be stored unencrypted.
+            return input;
+        }
+        return cipherTextIvMac.toString();
+
+
+    }
+
+    private String decryptString(String input)  {
+
+        AesCbcWithIntegrity.CipherTextIvMac cipherTextIvMac =
+                new AesCbcWithIntegrity.CipherTextIvMac(input);
+
+        try {
+            return AesCbcWithIntegrity.decryptString(cipherTextIvMac, mKeys);
+        } catch (UnsupportedEncodingException | GeneralSecurityException e) {
+            // Just return the original input if it fails.
+            return input;
+        }
+
+    }
 
 }
