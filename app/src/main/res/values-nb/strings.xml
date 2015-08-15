@@ -41,4 +41,5 @@
     <string name="store_credentials_confirm">Lagre brukernavn og passord</string>
     <string name="empty_feed_list_message">Ingen meldinger</string>
     <string name="title_activity_feed">Fronter Feed</string>
+    <string name="feed_url_default">https://fronter.com/minskole</string>
 </resources>

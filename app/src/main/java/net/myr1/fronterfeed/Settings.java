@@ -21,14 +21,15 @@ public class Settings {
     public static final String WORKING_CONFIG = "fronter_working_config";
 
 
+    private Context mContext;
     private SharedPreferences mPreferences;
-
     private SharedPreferences.Editor mEditor;
 
 
     public Settings(Context context)
     {
-        mPreferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
+        mContext = context.getApplicationContext();
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
     }
 
     public SharedPreferences getPreferencesObject()
@@ -107,7 +108,7 @@ public class Settings {
 
     public String getBaseFeedUrl()
     {
-        return mPreferences.getString(FEED_URL, "");
+        return mPreferences.getString(FEED_URL, mContext.getString(R.string.feed_url_default));
     }
 
 

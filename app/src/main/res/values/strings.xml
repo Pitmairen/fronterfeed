@@ -58,4 +58,5 @@
 
     <string name="empty_feed_list_message">No messages</string>
     <string name="store_credentials_confirm">Store username and password</string>
+    <string name="feed_url_default">https://fronter.com/myschool</string>
 </resources>
