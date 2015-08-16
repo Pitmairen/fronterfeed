@@ -275,9 +275,65 @@ public class UtilsTest extends AndroidTestCase {
 
 
         List<FeedItem> expects = new ArrayList<>(items);
-        expects.add(newItems.get(0));
-        expects.add(newItems.get(2));
+        expects.add(0, newItems.get(2));
+        expects.add(0, newItems.get(0));
 
+
+        List<FeedItem> res = Utils.addToFeedItems(items, newItems);
+
+
+        assertEquals(expects.size(), res.size());
+        assertEquals(expects, res);
+
+
+
+    }
+
+
+
+
+    public void testAddFeedItemsOrder()
+    {
+        List<FeedItem> items = new ArrayList<>();
+
+        FeedItem item = new FeedItem();
+        item.setId(123);
+        item.setType(4);
+        items.add(item);
+
+        item = new FeedItem();
+        item.setId(124);
+        item.setType(4);
+        items.add(item);
+
+        item = new FeedItem();
+        item.setId(125);
+        item.setType(19);
+        items.add(item);
+
+
+        List<FeedItem> newItems = new ArrayList<>();
+
+        item = new FeedItem();
+        item.setId(128);
+        item.setType(4);
+        newItems.add(item);
+
+        item = new FeedItem();
+        item.setId(127);
+        item.setType(4);
+        newItems.add(item);
+
+
+        item = new FeedItem();
+        item.setId(126);
+        item.setType(4);
+        newItems.add(item);
+
+        List<FeedItem> expects = new ArrayList<>(items);
+        expects.add(0, newItems.get(2));
+        expects.add(0, newItems.get(1));
+        expects.add(0, newItems.get(0));
 
         List<FeedItem> res = Utils.addToFeedItems(items, newItems);
 

@@ -189,13 +189,12 @@ public class Utils {
      */
     public static List<FeedItem> addToFeedItems(List<FeedItem> currentItems, List<FeedItem> newItems)
     {
-
-        for(FeedItem item : newItems){
-
+        int len = newItems.size();
+        for(int i=0; i < len; i++){
+            FeedItem item = newItems.get(len - i - 1);
             if(!currentItems.contains(item))
-                currentItems.add(item);
+                currentItems.add(0, item);
         }
-
         return currentItems;
 
     }
