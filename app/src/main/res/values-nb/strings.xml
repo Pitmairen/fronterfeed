@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Fronter Feed</string>
+    <string name="app_name">School Feed</string>
     <string name="action_logout">Logg Ut</string>
     <string name="action_refresh">Last på nytt</string>
     <string name="action_settings">Innstillinger</string>
