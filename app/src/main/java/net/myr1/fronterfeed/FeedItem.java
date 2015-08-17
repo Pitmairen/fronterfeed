@@ -3,6 +3,7 @@ package net.myr1.fronterfeed;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Comparator;
 
 /**
  * Represents a feed item
@@ -125,6 +126,19 @@ public class FeedItem {
         cal.setTimeInMillis(getPubDate());
         DateFormat df = SimpleDateFormat.getDateTimeInstance();
         return df.format(cal.getTime());
+    }
+
+
+
+
+
+    public static class PubDateComparator implements Comparator<FeedItem> {
+        @Override
+        public int compare(FeedItem a, FeedItem b) {
+            int cmp = a.getPubDate() > b.getPubDate() ? +1 :
+                    a.getPubDate() < b.getPubDate() ? -1 : 0;
+            return cmp;
+        }
     }
 
 }

@@ -6,8 +6,13 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Settings wrapper
@@ -34,7 +39,7 @@ public class Settings {
     public static final String WORKING_CONFIG = "fronter_working_config";
 
     private static final String STORAGE_VERSION = "storage_version";
-    private static final int CURRENT_VERSION = 2;
+    private static final int CURRENT_VERSION = 3;
 
     private Context mContext;
     private SharedPreferences mPreferences;
@@ -209,7 +214,10 @@ public class Settings {
             // we check if upgrade from 1 -> 2 is needed.
             upgradeVersion_1_2();
         }
-
+        else if( version == 2){
+            // Fix sort order of old feed items.
+            fixItemOrderInVersion2();
+        }
 
         setStorageVersion();
 
@@ -242,6 +250,23 @@ public class Settings {
         }
     }
 
+
+    private void fixItemOrderInVersion2(){
+
+        if (DataStore.hasFeedData(mContext)){
+            try {
+                List<FeedItem> items = DataStore.loadFeedData(mContext);
+                if (!items.isEmpty()) {
+                    Collections.sort(items, new FeedItem.PubDateComparator());
+                    Collections.reverse(items);
+                    DataStore.saveFeedData(mContext, items);
+                }
+            } catch (JSONException | IOException e) {
+
+            }
+
+        }
+    }
 
 
 
