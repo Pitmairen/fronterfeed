@@ -140,7 +140,7 @@ public class SettingsTest extends AndroidTestCase {
         assertEquals(username, plainUsername);
         assertEquals(password, plainPassword);
 
-        assertEquals(2, prefs.getInt("storage_version", -1));
+        assertFalse(prefs.getInt("storage_version", -1) == -1);
 
     }
 
@@ -163,7 +163,8 @@ public class SettingsTest extends AndroidTestCase {
         assertEquals(false, prefs.contains("user2"));
         assertEquals(false, prefs.contains("pass2"));
 
-        assertEquals(2, prefs.getInt("storage_version", -1));
+        assertFalse(prefs.getInt("storage_version", -1) == -1);
+
 
     }
 
@@ -194,8 +195,6 @@ public class SettingsTest extends AndroidTestCase {
 
         assertEquals(true, prefs.contains("user2"));
         assertEquals(true, prefs.contains("pass2"));
-
-        assertEquals(2, prefs.getInt("storage_version", -1));
 
 
         String plainUsername = decryptString(prefs.getString("user2", ""));
