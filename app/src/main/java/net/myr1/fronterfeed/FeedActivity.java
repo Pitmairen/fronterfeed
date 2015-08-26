@@ -96,6 +96,8 @@ public class FeedActivity extends AppCompatActivity implements AdapterView.OnIte
         // Disable notifications when this activity is active.
         Features.getInstance().disableNotifications();
 
+        // Hide any active notifications
+        Features.getInstance().removeActiveNotification();
 
         // Listen for fronter serivce status messages.
         IntentFilter statusFilter = new IntentFilter(FronterService.BROADCAST_STATUS);

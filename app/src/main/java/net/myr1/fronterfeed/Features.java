@@ -72,6 +72,14 @@ public class Features implements SharedPreferences.OnSharedPreferenceChangeListe
     }
 
 
+
+    public void removeActiveNotification(){
+
+        mNotifications.removeActiveNotification();
+
+    }
+
+
     /**
      * Enables the notifications if the current settings are working.
      *

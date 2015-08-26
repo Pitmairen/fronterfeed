@@ -81,4 +81,15 @@ public class Notifications extends BroadcastReceiver {
 
     }
 
+
+
+    public void removeActiveNotification(){
+        NotificationManager notificationManager =
+                (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        notificationManager.cancel(0);
+
+    }
+
+
 }
